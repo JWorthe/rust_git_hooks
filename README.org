@@ -11,3 +11,6 @@ ln -s $PWD/target/debug/commit-msg .git/hooks/commit-msg
 ln -s $PWD/target/debug/pre-push .git/hooks/pre-push
 #+END_SRC
 
+* License
+
+MIT Licensed. See LICENSE file for details.
