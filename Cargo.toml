@@ -1,0 +1,6 @@
+[package]
+name = "rust_git_hooks"
+version = "0.1.0"
+authors = ["Justin Worthe <justin@worthe-it.co.za>"]
+
+[dependencies]

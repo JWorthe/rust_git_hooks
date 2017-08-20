@@ -1,0 +1,13 @@
+Playing with Rust as an option for writing git hooks.
+
+To try the hooks, do the following to compile the hooks and symlink
+them into your git hooks folder.
+
+#+BEGIN_SRC sh
+cargo build
+
+ln -s $PWD/target/debug/prepare-commit-msg .git/hooks/prepare-commit-msg
+ln -s $PWD/target/debug/commit-msg .git/hooks/commit-msg
+ln -s $PWD/target/debug/pre-push .git/hooks/pre-push
+#+END_SRC
+
