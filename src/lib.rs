@@ -29,3 +29,4 @@ pub fn get_current_branch() -> Result<String, git2::Error> {
         None => Err(git2::Error::from_str("No branch name found"))
     }
 }
+

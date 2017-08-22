@@ -1,6 +1,6 @@
 extern crate rust_git_hooks;
-
 use rust_git_hooks::*;
+
 use std::fs::File;
 use std::io::Write;
 use std::io::Read;
@@ -11,6 +11,7 @@ fn main() {
     log();
     
     let commit_filename = env::args().nth(1);
+    let commit_source = env::args().nth(2);
     
     let current_branch = get_current_branch();
     

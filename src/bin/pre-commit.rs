@@ -1,14 +1,20 @@
+extern crate rust_git_hooks;
+use rust_git_hooks::*;
+
 use std::env;
 use std::io::{stdin, BufRead};
+use std::process;
+use std::process::{Command, Stdio};
 
 fn main() {
-    let args: Vec<_> = env::args().skip(1).collect();
-    println!("pre-commit called with {:?}", args);
+    log();
 
-    println!("BEGIN STDIN for pre-commit");
-    let stdin = stdin();
-    for line in stdin.lock().lines() {
-        println!("{:?}", line);
-    }
-    println!("END STDIN");
+    let command = Command::new("cargo")
+        .arg("test")
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
+        .output()
+        .expect("failed to execute process");
+
+    process::exit(command.status.code().unwrap_or(0));
 }
