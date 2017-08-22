@@ -9,10 +9,10 @@ use std::env;
 
 fn main() {
     log();
-
-    let current_branch = get_current_branch();
+    
     let commit_filename = env::args().nth(1);
-
+    
+    let current_branch = get_current_branch();
     
     match (current_branch, commit_filename) {
         (Ok(branch), Some(filename)) => {

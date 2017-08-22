@@ -5,7 +5,7 @@ use std::io::{stdin, BufRead};
 
 use git2::Repository;
 
-
+// This consumes stdin. Do not call this if you need to use stdin.
 pub fn log() {
     let name_arg = env::args().nth(0).unwrap_or(String::from("unknown"));
     let args: Vec<_> = env::args().skip(1).collect();
@@ -19,6 +19,7 @@ pub fn log() {
     println!("END STDIN");
 }
 
+// Uses libgit to get the name of your current branch
 pub fn get_current_branch() -> Result<String, git2::Error> {
     let git_repo = Repository::discover("./")?;
     let head = git_repo.head()?;
@@ -28,4 +29,3 @@ pub fn get_current_branch() -> Result<String, git2::Error> {
         None => Err(git2::Error::from_str("No branch name found"))
     }
 }
-
