@@ -15,8 +15,8 @@ fn main() {
     
     let current_branch = get_current_branch();
     
-    match (current_branch, commit_filename) {
-        (Ok(branch), Some(filename)) => {
+    match (current_branch, commit_filename, commit_source) {
+        (Ok(branch), Some(filename), None) => {
             let write_result = prepend_branch_name(branch, filename);
             match write_result {
                 Ok(_) => {},
@@ -26,11 +26,16 @@ fn main() {
                 }
             };
         },
-        (Err(e), _) => {
+        (_, _, Some(_)) => {
+            // do nothing silently. This comes up on merge commits,
+            // ammendment commits, if a message was specified on the
+            // cli.
+        }
+        (Err(e), _, _) => {
             eprintln!("Failed to find current branch. {}", e);
             process::exit(1);
         },
-        (_, None) => {
+        (_, None, _) => {
             eprintln!("Commit file was not provided");
             process::exit(2);
         }
